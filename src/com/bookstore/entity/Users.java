@@ -59,20 +59,7 @@ public class Users {
 		this.password = password;
 	}
 
-	public Users(String email, String fullName, String password) {
-		super();
-		this.email = email;
-		this.fullName = fullName;
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "Users [userId=" + userId + ", email=" + email + ", fullName=" + fullName + ", password=" + password
-				+ "]";
-	}
-	
-	
+		
 	
 
 }
