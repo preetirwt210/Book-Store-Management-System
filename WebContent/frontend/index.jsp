@@ -9,6 +9,7 @@
       
       <jsp:directive.include file="header.jsp"/>
       
+      
       <div align="center">
       <br/><br/>
          <h1>This is main content:</h1>
