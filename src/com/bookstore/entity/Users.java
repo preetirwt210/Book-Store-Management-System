@@ -12,7 +12,10 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries( { @NamedQuery(name = "Users.findAll",
                 query = "SELECT u FROM Users u ORDER BY u.fullName") ,
-	             @NamedQuery(name = "Users.countAll",query = "SELECT Count(*) FROM Users u") 
+	             @NamedQuery(name = "Users.countAll",
+	             query = "SELECT Count(u) FROM Users u"),
+	             @NamedQuery(name="Users.findByEmail" , 
+	             query="SELECT u FROM Users u WHERE u.email= : email")
               })
 @Table(name="users")
 public class Users {
@@ -62,6 +65,13 @@ public class Users {
 	}
 
 	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Users(String email, String fullName, String password) {
+		super();
+		this.email = email;
+		this.fullName = fullName;
 		this.password = password;
 	}
 

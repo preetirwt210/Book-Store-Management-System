@@ -1,6 +1,6 @@
  <div align="Center">
           <div>
-          <img  src="../images/ever.png" title="Evergreen Books store" alt="Image not available">
+          <img  src="images/ever.png" title="Evergreen Books store" alt="Image not available">
            </div>
       <br/><br/>
       <div>

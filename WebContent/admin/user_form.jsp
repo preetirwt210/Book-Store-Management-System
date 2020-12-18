@@ -18,21 +18,22 @@
          <table>
          <tr>
               <td align="right">Email: </td>
-              <td align="left"><input type="text" name="email"  id= "email" placeholder="Email Id" size="20"/></td>         
+              <td align="left"><input type="text" name="email"  id= "email" placeholder="Email Id" size="20" value="${user.email}"/></td>         
          </tr>
          
          <tr>
               <td align="right">Full name: </td>
-               <td align="left"><input type="text" name="fullname" id= "fullname" placeholder="Your Name" size="20"/></td>         
+               <td align="left"><input type="text" name="fullname" id= "fullname" placeholder="Your Name" size="20" value="${user.fullname }"/></td>         
          </tr>
          <tr>
               <td align="right">Password: </td>
-              <td align="left"><input type="password" name="password"  id= "password" placeholder="password" size="20"/></td>         
+              <td align="left"><input type="password" name="password"  id= "password" placeholder="password" size="20" value="${user.password }"/></td>         
          </tr>
          <tr><td>&nbsp;</td></tr>
           <tr>
           <td colspan="2" align="center">
-              <input type="submit" value="Save"/> 
+              <input type="submit" value="Save"
+              /> 
               <input type="button" value="Cancel" onclick="javascript:history.go(-1);"/>
               </td>    
          </tr>
@@ -48,7 +49,7 @@
 	     var fieldEmail= document.getElementById("email");
 	     var fieldFullname= document.getElementById("fullname");
 	     var fieldPassword= document.getElementById("password");
-	     
+	     ~
 	     if(fieldEmail.value.length ==0){
 	    	 alert("Email is required");
 	    	 fieldEmail.focus();

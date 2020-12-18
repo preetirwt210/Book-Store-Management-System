@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.service.UserServices;
 
-
-@WebServlet("/admin/list_users")
-public class ListUsersServlet extends HttpServlet {
+@WebServlet("/admin/edit_user")
+public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public ListUsersServlet() {
+    public EditUserServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		UserServices userServices = new UserServices(request,response);
-	
-		userServices.listUser();
+		UserServices userServices= new UserServices(request,response);
+		userServices.editUser();
 		
 	}
 
