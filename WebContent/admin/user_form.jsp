@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,20 +10,34 @@
 <jsp:directive.include file="header.jsp"/> 
 
 <div align="center">
-    <h2> Create New User</h2>
+    
+    <c:if test="${user != null }">
+       <h2>Edit User</h2>
+    </c:if>
+     <c:if test="${user == null }">
+   <h2>Create New User </h2> 
+   </c:if>
+    
     </div>
     <hr width="60%">
     <div align="center">
+     <c:if test="${user != null }">
+    <form action="update_user" method="post" onsubmit="return validateFormInput()">
+    <input type="hidden" name="userId" value="${user.userId }"/>
+         </c:if>
+         
+         <c:if test="${user == null }">
     <form action="create_user" method="post" onsubmit="return validateFormInput()">
+         </c:if>
          <table>
          <tr>
               <td align="right">Email: </td>
-              <td align="left"><input type="text" name="email"  id= "email" placeholder="Email Id" size="20" value="${user.email}"/></td>         
+              <td align="left"><input type="text" name="email"  id= "email" placeholder="your email id" size="20" value="${user.email}"/></td>         
          </tr>
          
          <tr>
               <td align="right">Full name: </td>
-               <td align="left"><input type="text" name="fullname" id= "fullname" placeholder="Your Name" size="20" value="${user.fullname }"/></td>         
+               <td align="left"><input type="text" name="fullname" id= "fullname" placeholder="Your Name" size="20" value="${user.fullName }"/></td>         
          </tr>
          <tr>
               <td align="right">Password: </td>
@@ -49,7 +63,7 @@
 	     var fieldEmail= document.getElementById("email");
 	     var fieldFullname= document.getElementById("fullname");
 	     var fieldPassword= document.getElementById("password");
-	     ~
+	    
 	     if(fieldEmail.value.length ==0){
 	    	 alert("Email is required");
 	    	 fieldEmail.focus();
@@ -65,10 +79,10 @@
 	    	 fieldEmail.focus();
 	    	 return false;
 	     }
-	    
+	     return true;
 	     
    }
-   return true;
+  
      
 </script>
 </html>

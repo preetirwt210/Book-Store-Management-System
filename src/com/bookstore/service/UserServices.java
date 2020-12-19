@@ -83,9 +83,46 @@ public class UserServices {
 		Users user=userDAO.get(userId );
 		
 		String editPage= "user_form.jsp";
-		request.setAttribute(" user", user);
+		request.setAttribute("user", user);
 	RequestDispatcher requestDispatcher= request.getRequestDispatcher(editPage);
 	requestDispatcher.forward(request, response);
+	}
+
+	public void updateUser() throws ServletException, IOException {
+		
+		int userId=Integer.parseInt(request.getParameter("userId"));
+		String email=request.getParameter("email");
+		String fullName=request.getParameter("fullname");
+		String password=request.getParameter("password");
+		
+		Users userById=userDAO.get(userId);
+		Users userByEmail=userDAO.findByEmail(email);
+		
+		if(userByEmail!= null && userByEmail.getUserId() !=userById.getUserId()) {
+			String message="Could not update user.User with email " + email + "already exists";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher requestDispatcher= request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+		}
+		else {
+			Users user = new Users(userId, email, fullName, password);
+			userDAO.update(user);
+
+			String message = "User has been updated successfully!!";
+
+			listUser(message);
+		}
+	}
+
+	public void deleteUser() throws ServletException, IOException {
+		int userId=Integer.parseInt(request.getParameter("id"));
+		userDAO.delete(userId);
+		
+		String message="User has been deleted successfuly.";
+		listUser(message);
+		
+		
 	}
 
 	
