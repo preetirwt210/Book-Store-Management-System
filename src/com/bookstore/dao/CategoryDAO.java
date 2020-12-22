@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.bookstore.entity.Category;
+import com.bookstore.entity.Users;
 
 public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category> {
 
@@ -12,10 +13,20 @@ public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category
 		super(entityManager);
 		
 	}
+   
+	public Category create(Category category) {
+		return null;
+}
 
+
+       public Category update(Category t) {
+
+	     return null;
+}
+	
 	@Override
 	public Category get(Object id) {
-	
+		
 		return null;
 	}
 
