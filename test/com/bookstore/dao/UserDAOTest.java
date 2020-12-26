@@ -34,14 +34,14 @@ public class UserDAOTest {
 	
 	@Test
 	public void testCreateUsers() {
-		//Users user1= new Users();
-	//	user1.setEmail("tommy@gmail.com");
-		//user1.setFullName("tommy Warner");
-		//user1.setPassword("password12356");
+		Users user1= new Users();
+		user1.setEmail("tommy@gmail.com");
+		user1.setFullName("tommy Warner");
+		user1.setPassword("password12356");
 		
-	      //user1= userDao.create(user1);
+	      user1= userDao.create(user1);
 	      
-	       //assertTrue(user1.getUserId()>0);
+	       assertTrue(user1.getUserId()>0);
 
 	}
 	@Test(expected = PersistenceException.class)
