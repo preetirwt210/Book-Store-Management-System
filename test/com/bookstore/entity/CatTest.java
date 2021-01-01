@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 public class CatTest {
 
 	public static void main(String[] args) {
-		Category cat= new Category("Core Java");
+		Category cat= new Category("Advance Java");
 		
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
 		EntityManager entityManager =entityManagerFactory.createEntityManager();

@@ -7,6 +7,7 @@
 <title>Evergreen Bookstore Administration</title>
 </head>
 <body style="background-color:grey;">
+        
 <jsp:directive.include file="header.jsp"/> 
 
 <div align="center">

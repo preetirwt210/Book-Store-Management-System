@@ -1,10 +1,11 @@
 package com.bookstore.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -12,55 +13,92 @@ import org.junit.Test;
 
 import com.bookstore.entity.Category;
 
-public class CategoryDAOTest {
+public class CategoryDAOTest extends BaseDAOTest{
 	
-	private static EntityManagerFactory entityManagerFactory;
-	private static EntityManager entityManager;
+	
 	private  static CategoryDAO categoryDao;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		 entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
-		 entityManager =entityManagerFactory.createEntityManager();
+		BaseDAOTest.setUpBeforeClass();
 	      categoryDao= new CategoryDAO(entityManager);
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		 entityManager.close();
-	       entityManagerFactory.close();
-	}
-
+	
 	@Test
 	public void testCreateCategory() {
 		Category newCategory=new Category("Java");
 		Category category=categoryDao.create(newCategory);
+		
 		assertTrue(category != null && category.getCategoryId() >0);
+		
 	}
 
 	@Test
 	public void testUpdateCategory() {
-		fail("Not yet implemented");
+		
+		Category cat=new Category("Python");
+		
+		cat.setCategoryId(5);
+		Category category=categoryDao.update(cat);
+		
+		assertEquals(cat.getName(),category.getName());
+		
 	}
 
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		
+		Integer catId=2;
+		Category cat=categoryDao.get(catId);
+		
+		assertNotNull(cat);
 	}
 
 	@Test
 	public void testDeleteObject() {
-		fail("Not yet implemented");
+		
+		Integer catId=3;
+		categoryDao.delete(catId);
+		
+		Category cat=categoryDao.get(catId);
+		assertNull(cat);
 	}
 
 	@Test
 	public void testListAll() {
-		fail("Not yet implemented");
+		List<Category> listCategory= categoryDao.listAll();
+		
+		assertTrue(listCategory.size()>0);
 	}
 
 	@Test
 	public void testCount() {
-		fail("Not yet implemented");
+		
+		long totalCategories=categoryDao.count();
+		assertEquals(4,totalCategories);
+	}
+	
+
+	@Test
+	public void testFindByName() {
+		
+		String name="Core Java";
+		Category category=categoryDao.findByName(name);
+		assertNotNull(category);
+	}
+	
+	@Test
+	public void testFindByNameNotFound() {
+		
+		String name="Core Java1";
+		Category category=categoryDao.findByName(name);
+		assertNull(category);
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		 BaseDAOTest.tearDownAfterClass();
 	}
 
 }

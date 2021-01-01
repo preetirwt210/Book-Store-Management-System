@@ -7,8 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
@@ -18,26 +17,24 @@ import org.junit.Test;
 
 import com.bookstore.entity.Users;
 
-public class UserDAOTest {
+public class UserDAOTest extends BaseDAOTest {
 	
-	private static EntityManagerFactory entityManagerFactory;
-	private static EntityManager entityManager;
+	
 	private static UserDAO userDao;
 	
 	@BeforeClass
-	public static void setUpClass() {
+	public static void setUpClass() throws Exception {
 		
-		 entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
-		 entityManager =entityManagerFactory.createEntityManager();
+		BaseDAOTest.setUpBeforeClass();
 		 userDao= new UserDAO(entityManager);
 	}
 	
 	@Test
 	public void testCreateUsers() {
 		Users user1= new Users();
-		user1.setEmail("tommy@gmail.com");
-		user1.setFullName("tommy Warner");
-		user1.setPassword("password12356");
+		user1.setEmail("tommy3@gmail.com");
+		user1.setFullName("tommy S Warner");
+		user1.setPassword("password1356");
 		
 	      user1= userDao.create(user1);
 	      
@@ -123,10 +120,9 @@ public class UserDAOTest {
 	}
 	
 	@AfterClass
-	public static void tearDownClass() {
+	public static void tearDownClass() throws Exception {
 		
-		 entityManager.close();
-	       entityManagerFactory.close();
+		 BaseDAOTest.tearDownAfterClass();
 	}
 
 }
