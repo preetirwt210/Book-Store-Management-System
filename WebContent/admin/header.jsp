@@ -1,5 +1,7 @@
- <div align="Center">       
-          <img src="../images/ever.png" title="Evergreen Books store" alt="Image not available"/>   
+ <div align="Center">    
+ <div>  
+          <img src="../images/ever.png" title="Evergreen Books store" alt="Image not available" />   
+     </div> 
       <div>
              Welcome, Admin | <a href="logout">Logout</a><br/><br/>
       </div>

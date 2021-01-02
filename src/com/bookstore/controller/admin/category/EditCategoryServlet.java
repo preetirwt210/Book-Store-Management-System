@@ -11,22 +11,21 @@ import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.CategoryServices;
 
 
-@WebServlet("/admin/create_category")
-public class CreateCategoryServlet extends BaseServlet {
+@WebServlet("/admin/edit_category")
+public class EditCategoryServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    public CreateCategoryServlet() {
-        super();
+
+   
+    public EditCategoryServlet() {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		CategoryServices categoryServices=new CategoryServices(entityManager,request,response);
-		categoryServices.createCategory();
-		
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  
+		 CategoryServices categoryServices=new CategoryServices(entityManager, request, response);
+		 categoryServices.editCategory();
+	
 	}
 
 }

@@ -4,7 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create New Category-Evergreen Bookstore Administration</title>
+<title>
+ <c:if test="${category != null }">
+   Edit Category-Evergreen Bookstore Administration
+   </c:if>
+   
+   <c:if test="${category == null }">
+  Create New Category-Evergreen Bookstore Administration
+   </c:if>
+   </title>
 </head>
 <body >
 <jsp:directive.include file="header.jsp"/> 

@@ -79,7 +79,6 @@ public class CategoryDAOTest extends BaseDAOTest{
 		assertEquals(4,totalCategories);
 	}
 	
-
 	@Test
 	public void testFindByName() {
 		
