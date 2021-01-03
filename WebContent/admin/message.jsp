@@ -5,12 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Evergreen Bookstore Administration</title>
+<link rel="stylesheet" href="../css/style.css">
+
 </head>
-<body style="background-color:grey;">
+<body >
 <jsp:directive.include file="header.jsp"/> 
 
 <div align="center">
-    <h2> ${message }</h2>
+    <h2 class="message"> ${message }</h2>
     </div>
     
     

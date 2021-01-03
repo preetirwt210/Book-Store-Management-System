@@ -1,0 +1,91 @@
+@charset "ISO-8859-1";
+
+headermenu{
+	display:table
+	}
+#headermenu a:link{
+	font-size:larger;
+}
+
+a:link{
+	 color: cornflowerBlue;
+	 text-decoration: none;
+}
+a:visited{
+	color: indigo;
+}
+a:hover{
+	color:blue;
+	text-decoration:underline;
+}
+a:active{
+	color:red;
+}
+.menu_item{
+	display:table-cell;
+	 padding-right: 20px;
+}
+.pageheading{
+	color:darkblue;
+}
+
+table{
+	border: 1 px solid black;
+	border-collapse:collapse;
+	
+}
+th,td{
+	padding:8px;
+}
+
+th{
+     background:cornflowerblue;
+	border: 1 px solid black;
+	color:cornsilk;
+	font-size:larger;
+}
+table.form {
+	border: 1px solid black;
+	border-radius:5px;	
+	padding:6px;
+	font-weight: bold;
+}
+
+.save {
+	padding:6px;
+	border-radius:5px;
+	font-weight: bold;
+	height:30px;
+}
+
+.cancel {
+	padding:6px;
+	border-radius:5px;
+	font-weight: bold;
+	height:30px;
+}
+
+input{
+	border:1px solid;
+	border-radius:5px;
+	border-color:green;
+	height:20px;
+}
+.save:hover{
+	background-color:white;
+	color:green;
+}
+.cancel:hover{
+	background-color:white;
+	color:green;
+}
+.message{
+	font-style: italic;
+	color:red;
+}
+.error{
+	font-style: italic;
+	color:red;
+	margin:5px;
+	
+}

@@ -5,17 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Evergreen Bookstore Administration</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
-<body style="background-color:grey;">
+<body >
         
 <jsp:directive.include file="header.jsp"/> 
 
 <div align="center">
-    <h2> Administrative Dashboard</h2>
+    <h1 class="pageheading"> Administrative Dashboard</h1>
     </div>
     <hr width="60%">
-    <div align="center">
-         <h2>Quick Actions:</h2>
+    <div id= "headermenu" align="center">
+         <h2 class="pageheading">Quick Actions:</h2>
          <b>
          <a href="create_book">New Book</a> &nbsp;
          <a href="user_form.jsp">New User</a> &nbsp;
@@ -25,17 +26,17 @@
     </div>
     <hr width="60%">
     <div align="center">
-    <h2>Recent Sales: </h2>
+    <h2 class="pageheading">Recent Sales: </h2>
     </div>
     
     <hr width="60%">
     <div align="center">
-    <h2>Recent Reviews: </h2>
+    <h2 class="pageheading">Recent Reviews: </h2>
     </div>
     
     <hr width="60%">
     <div align="center">
-    <h2>Stastics: </h2>
+    <h2 class="pageheading">Stastics: </h2>
     </div>
     
     <hr>
