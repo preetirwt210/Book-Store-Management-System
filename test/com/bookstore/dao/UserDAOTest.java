@@ -7,8 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
 import org.junit.AfterClass;
@@ -112,6 +110,14 @@ public class UserDAOTest extends BaseDAOTest {
 		assertEquals(11,totalUsers);
 	}
 	
+	@Test
+	public void testCheckLoginSuccess() {
+		String email="preetirawat711@gmail.com";
+		String password="rwtpreeti210";
+		boolean loginResult= userDao.checkLogin(email, password);
+		
+		assertTrue(loginResult);
+	}
 	@Test
 	public void testFindByEmail() {
 		String email ="sneha@gmail.com";
