@@ -16,7 +16,7 @@
 		      <img src="../images/category.jpg" width="100" height="50"/><br/>Categories</a>
 		     </div>
 		     <div class="menu_item" >
-		      <a href="books" >
+		      <a href="list_books" >
 		      <img src="../images/book.jpg" width="100" height="50"/><br/>Books</a> 
 		      </div>
 		      <div class="menu_item">

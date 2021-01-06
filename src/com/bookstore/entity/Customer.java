@@ -91,7 +91,7 @@ public class Customer implements java.io.Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "fullname", nullable = false, length = 30)
+	@Column(name = "full_name", nullable = false, length = 30)
 	public String getFullname() {
 		return this.fullname;
 	}
