@@ -38,7 +38,6 @@
     <div align="center">
     <h2 class="pageheading">Stastics: </h2>
     </div>
-    
     <hr>
     
     <jsp:directive.include file="footer.jsp"/>

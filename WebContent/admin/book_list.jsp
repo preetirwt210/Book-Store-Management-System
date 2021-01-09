@@ -12,7 +12,7 @@
 
 <div align="center">
     <h1 class="pageheading">Books Management</h1>
-    <h3><a href="user_form.jsp">Create new Book</a></h3>
+    <h3><a href="new_book">Create new Book</a></h3>
     </div>
     
     <c:if test="${message!=null }">

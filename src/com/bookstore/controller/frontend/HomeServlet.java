@@ -24,7 +24,8 @@ public class HomeServlet extends BaseServlet {
        
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 				
 		CategoryDAO categoryDAO=new CategoryDAO(entityManager);
 		List<Category> listCategory = categoryDAO.listAll();
