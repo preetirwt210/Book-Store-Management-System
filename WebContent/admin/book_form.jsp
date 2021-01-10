@@ -32,7 +32,7 @@
          </c:if>
          
          <c:if test="${book == null }">
-    <form action="create_book" method="post" id="bookForm">
+    <form action="create_book" method="post" id="bookForm" enctype="multipart/form-data">
          </c:if>
          <table >
          <tr><td>Category</td>
@@ -81,7 +81,7 @@
          </tr>
           <tr>
               <td align="right">Description: </td>
-               <td align="left"><textarea rows="5" cols="50" name="desciption" id= "desciption" placeholder="desciption" ></textarea></td>
+               <td align="left"><textarea rows="5" cols="50" name="description" id= "description" placeholder="desciption" ></textarea></td>
          
           <tr>
           <td colspan="2" align="center">
@@ -93,6 +93,7 @@
          
          </table>
          </form>
+        
          </div>
    <jsp:directive.include file="footer.jsp"/>
 </body>
@@ -112,7 +113,7 @@ $(document).ready(function(){
 	        author: "required",
 	        isbn: "required",
 	        publishDate: "required",
-	        image:"required"
+	        image:"required",
 	        price: "required",
 	        description: "required",
 	        
@@ -123,7 +124,7 @@ $(document).ready(function(){
 	        author: "Please Enter Author of the book",
 	        isbn: "Please Enter ISBN of the book",
 	        publishDate: "Please Enter Publish Date of the book",
-	        image:"Please Enter Image of the book"
+	        image:"Please Enter Image of the book",
 	        price: "Please Enter Price of the book",
 	        description: "Please Enter Description of the book"
 		}
@@ -140,5 +141,5 @@ $(document).ready(function(){
 	  };
 	  reader.readAsDataURL(file);
   }
-</script>
+  </script>
 </html>
