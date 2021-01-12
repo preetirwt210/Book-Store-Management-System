@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -171,6 +170,21 @@ public void testCreate2ndBook() throws ParseException, IOException {
 		Book book= bookDao.findByTitle(title);
 		System.out.println(book.getAuthor() );
 		assertNotNull(book);
+	}
+	@Test
+	public void testListByCategory() {
+		int categoryId=2;
+		List<Book> listBooks=bookDao.listByCategory(categoryId);
+		
+		assertTrue(listBooks.size()>0);
+	}
+	
+	@Test
+	public void testNewBooks() {
+		
+		List<Book> listNewBooks=bookDao.listNewBooks();
+		
+		assertEquals(4, listNewBooks.size());
 	}
 	
 	@Test

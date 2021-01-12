@@ -39,7 +39,7 @@
            <td>${status.index + 1} </td>
            <td>${book.bookId}</td>
             <td>
-              <img src="data:imagejpg;base64,${book.base64Image }" width="100" height="100"/>
+              <img src="data:imagejpg;base64,${book.base64Image }" width="100" height="100"/><br/>
 				</td>
              <td>${book.title}</td>
              <td>${book.author}</td>
