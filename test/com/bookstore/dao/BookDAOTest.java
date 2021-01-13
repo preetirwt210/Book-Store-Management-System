@@ -143,6 +143,13 @@ public void testCreate2ndBook() throws ParseException, IOException {
 		
 		assertTrue(true);
 	}
+	@Test
+	public void testSearchBookInTitle() {
+		String keyword="Kathy";
+		List<Book> result = bookDao.search(keyword);
+		
+		assertEquals(1,result.size());
+	}
 
 	@Test
 	public void testListAll() {
