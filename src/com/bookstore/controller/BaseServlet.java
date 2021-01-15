@@ -23,7 +23,7 @@ public abstract class BaseServlet extends HttpServlet {
 	
 	@Override
 	public void destroy() {
-		entityManager.close();
+		entityManager.close();              
 		entityManagerFactory.close();
 	}
 	

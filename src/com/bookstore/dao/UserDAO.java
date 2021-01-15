@@ -11,9 +11,7 @@ import com.bookstore.entity.Users;
 public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 
 	public UserDAO(EntityManager entityManager) {
-		super(entityManager);
-		// TODO Auto-generated constructor stub
-	}
+		super(entityManager);}
 	
 		@Override
 		public Users create(Users user) {
@@ -27,19 +25,19 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 			return super.update(user);
 		}
 
-	@Override
-	public Users get(Object userId) {
+		@Override
+		public Users get(Object userId) {
+			
+			return super.find(Users.class, userId);
+		}	
+    public Users findByEmail(String email) {
+				List<Users> listUsers= super.findWithNamedQuery("Users.findByEmail", "email", email);
+				if(listUsers != null && listUsers.size()>0) {
+					return listUsers.get(0);
+				}
+				return null;
 		
-		return super.find(Users.class, userId);
-	}	
-	public Users findByEmail(String email) {
-		List<Users> listUsers= super.findWithNamedQuery("Users.findByEmail", "email", email);
-		if(listUsers != null && listUsers.size()>0) {
-			return listUsers.get(0);
-		}
-		return null;
-		
-	}
+			}
 	
 	public boolean checkLogin(String email, String password) {
 		Map<String, Object> parameters=new HashMap<>();
@@ -62,7 +60,7 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 
 	@Override
 	public List<Users> listAll() {
-		// TODO Auto-generated method stub
+		
 		return super.findWithNamedQuery("Users.findAll");
 	}
 
