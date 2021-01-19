@@ -187,6 +187,14 @@ public void testCreate2ndBook() throws ParseException, IOException {
 	}
 	
 	@Test
+	public void testCountByCategory() {
+		int categoryId=2;
+		long numOfBooks= bookDao.countByCategory(categoryId);
+		
+		assertTrue(numOfBooks == 2);
+	}
+	
+	@Test
 	public void testNewBooks() {
 		
 		List<Book> listNewBooks=bookDao.listNewBooks();

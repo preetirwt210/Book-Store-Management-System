@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <div align="Center">    
  <div>  
+ <a href="${pageContext.request.contextPath }/admin/">
           <img src="../images/ever.png" title="Evergreen Books store" alt="Image not available" width="1000" height="100" />   
+     </a>
      </div> 
       <div>
              Welcome, <c:out value="${sessionScope.useremail }"/> | <a href="logout">Logout</a><br/><br/>

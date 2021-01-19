@@ -12,15 +12,16 @@
       <jsp:directive.include file="header.jsp"/>
       
       
-      <div align="center">
+      <div class="center">
       	<h1>${category.name} </h1>
       </div>
-      <div align="center" style="width:80%; margin:0 auto;" >
+      <div class="book_group" >
       	<c:forEach items="${listBooks }" var="book">
-      	<div style="float:left; display: inline-block; margin:0 auto;">
+      	<div class="book">
       <div>
       <a href="view_books?id=${book.bookId}">
-       <img src="data:imagejpg;base64,${book.base64Image }" width="168" height="160"/></a></div><br/>
+       <img class="book-small" 
+       src="data:imagejpg;base64,${book.base64Image }"/></a></div><br/>
       <div><b> <a href="view_book?id=${book.bookId}">${book.title }</a></b></div>
        <div>rating *****</div>
         <div><i>by ${book.author}</i></div>

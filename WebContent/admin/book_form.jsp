@@ -9,7 +9,12 @@
 <link rel="stylesheet" href="../css/jquery-ui.min.css">
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+
 <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/jquery.richtext.min.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="..//css/richtext.min.css">
+
 </head>
 <body >
 <jsp:directive.include file="header.jsp"/> 
@@ -34,7 +39,7 @@
          <c:if test="${book == null }">
     <form action="create_book" method="post" id="bookForm" enctype="multipart/form-data">
          </c:if>
-         <table >
+         <table class="form" >
          <tr><td>Category</td>
          <td>
              <select name="category">
@@ -108,6 +113,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#publishDate").datepicker();
+	$('#description').richText();
+
 	
 	$("#image").change(function(){
 		showImageThumbnail(this);

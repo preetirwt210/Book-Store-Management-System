@@ -11,15 +11,16 @@
       <jsp:directive.include file="header.jsp"/>
       
       
-      <div align="center">
+      <div class="center">
          
-         <div align="center" style="width:80%; margin:0 auto;" >
+         <div>
          <h2>New Books: </h2>
       	<c:forEach items="${listNewBooks }" var="book">
-      	<div style="display:inline-block; margin:0 auto;">
+      	<div class="book">
       <div>
       <a href="view_books?id=${book.bookId}">
-       <img src="data:imagejpg;base64,${book.base64Image }" width="120" height="160"/></a></div><br/>
+       <img class="book-small" 
+       src="data:imagejpg;base64,${book.base64Image }"/></a></div><br/>
       <div><b> <a href="view_book?id=${book.bookId}">${book.title }</a></b></div>
        <div>rating *****</div>
         <div><i>by ${book.author}</i></div>
@@ -27,10 +28,10 @@
          </div>
       	</c:forEach>
       </div>
-      <div align="center" style="clear:both">
+      <div class="next-row">
          <h2>Best-selling Books</h2>
          </div>
-         <div align="center" style="clear:both">
+         <div class="next-row">
          <h2>Most-favoured Books</h2>
          </div>
       <br/><br/><br/></br>

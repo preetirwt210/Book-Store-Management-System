@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.controller.BaseServlet;
+import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
 
@@ -113,8 +114,16 @@ public class CategoryServices extends BaseServlet {
 	public void deleteCategory() throws ServletException, IOException {
 		int categoryId =Integer.parseInt(request.getParameter("id"));
 		categoryDAO.delete(categoryId);
-		
-		String message = "The category with ID " + categoryId + "has been removed succeffully.";
+		BookDAO bookDao=new BookDAO(entityManager);
+		long numberofBooks=bookDao.countByCategory(categoryId);
+		String message;
+		if(numberofBooks >0) {
+			message="Could not delete the category (ID: %d)because it contains some books.";
+			message=String.format(message,numberofBooks);
+		}else {
+			categoryDAO.delete(categoryId);
+		 message = "The category with ID " + categoryId + "has been removed succeffully.";
+		}
 		listCategory(message);
 		
 		

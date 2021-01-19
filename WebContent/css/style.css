@@ -45,10 +45,11 @@ th{
 	font-size:larger;
 }
 table.form {
-	border: 1px solid black;
-	border-radius:20px;	
-	padding:1px;
-	font-weight: bold;
+	border:0;
+	padding:4px;
+	width:80%;
+	margin:0 auto;
+
 }
 
 .save {
@@ -88,4 +89,62 @@ input{
 	color:red;
 	margin:5px;
 	
+}
+div.center{
+	 text-align:center;
+}
+div.book{
+	display: inline-block;
+	margin:20px;
+	text-align: center;
+}
+table.book{
+	width:80%;
+	border:0;
+	margin:0 auto;
+}
+div.book_group{
+	width:80%; 
+	margin:0 auto;
+}
+div.next-row{
+	clear:both
+}
+img.book-small{
+	width:128px;
+	 height:164px;
+	
+}
+img.book-large{
+	width:240px;
+	 height:300px;
+}
+#book-title{
+	font-size: x-large;
+	font-weight:bold;
+}
+#author{
+	font-size: large;
+	font-style:italic;
+}
+#description{
+	vertical-align:top;
+	 text-align:justify;
+}
+#search-image{
+	display:inline-block;
+	 margin:20px;
+	 width:10%"
+}
+#search-desc{
+display:inline-block; 
+margin:20px; 
+vertical-align:top;
+ width:60%; 
+ text-align:left;
+}
+#search-price{
+display:inline-block; 
+margin:20px; 
+vertical-align:top;
 }

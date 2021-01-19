@@ -9,20 +9,21 @@
 <body>
       
       <jsp:directive.include file="header.jsp"/>
-      <div align="center">
-       <table width="80%" border="0">
+      <div class="center">
+       <table class="book">
            <tr>
-           <td colspan="3" align="left"><h2>${book.title} </h2>by: ${book.author} </td>
+           <td colspan="3" align="left"><p id="book-title">${book.title} </p>
+           By<span id="author"> ${book.author}</span> </td>
            </tr>
            
            <tr>
-           <td rowspan="2"><img src="data:imagejpg;base64,${book.base64Image }" width="240" height="300"/></td>
+           <td rowspan="2"><img class="book-large" src="data:imagejpg;base64,${book.base64Image }" /></td>
            <td valign="top" align="left">Rating *****</td>
            <td valign="top" rowspan="2" width="10%"><h2>$${book.price}</h2> <br/><br/><button type="submit">Add to Cart</button> </td>
            </tr>
            
            <tr>
-           <td valign="top" style="text-align:justify;">${book.description}</td>
+           <td id="description">${book.description}</td>
            </tr>
            <tr><td>&nbsp; &nbsp;</td></tr>
            <tr>

@@ -1,7 +1,9 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <div align="Center">
+ <div class="center">
           <div>
+          <a href="${pageContext.request.contextPath }">
           <img  src="images/ever.png" title="Evergreen Books store" alt="Image not available">
+          </a>
            </div>
       <br/><br/>
       <div>
