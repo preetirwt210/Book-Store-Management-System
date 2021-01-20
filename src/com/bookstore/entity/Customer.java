@@ -23,6 +23,10 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "customer", catalog = "bookstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@NamedQueries({
+	@NamedQuery(name="Customer.findAll", query="SELECT c FROM Customer c ORDER BY c.registerDate DESC "),
+	@NamedQuery(name="Customer.countAll", query="SELECT COUNT(c.email) FROM Customer c ")
+})
 
 public class Customer implements java.io.Serializable {
 

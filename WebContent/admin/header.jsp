@@ -22,7 +22,7 @@
 		      <img src="../images/book.jpg" width="100" height="50"/><br/>Books</a> 
 		      </div>
 		      <div class="menu_item">
-		      <a href="customers" >
+		      <a href="list_customers" >
 		      <img src="../images/customer.png" width="100" height="50"/><br/>Customers</a> 
 		     </div>
 		     <div class="menu_item">

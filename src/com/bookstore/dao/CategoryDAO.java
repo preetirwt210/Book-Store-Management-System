@@ -45,7 +45,7 @@ public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category
 	@Override
 	public long count() {
 		
-		return super.countWithNameQuery("Category.countAll");
+		return super.countWithNamedQuery("Category.countAll");
 	}
 
 	
