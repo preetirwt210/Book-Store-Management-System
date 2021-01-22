@@ -150,7 +150,6 @@ public void testCreate2ndBook() throws ParseException, IOException {
 		
 		assertEquals(1,result.size());
 	}
-
 	@Test
 	public void testListAll() {
 
@@ -194,7 +193,7 @@ public void testCreate2ndBook() throws ParseException, IOException {
 	}
 	
 	@Test
-	public void testNewBooks() {
+	public void testNewBooks() {      
 		
 		List<Book> listNewBooks=bookDao.listNewBooks();
 		

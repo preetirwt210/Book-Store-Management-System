@@ -3,7 +3,7 @@ package com.bookstore.dao;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import javax.persistence.EntityManager;import javax.persistence.NamedQuery;
 
 import com.bookstore.entity.Customer;
 
@@ -46,6 +46,15 @@ public  class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Custome
 	@Override
 	public long count() {
 		return super.countWithNamedQuery("Customer.countAll");
+	}
+	public Customer findByEmail(String email) {
+		List<Customer> result=super.findWithNamedQuery("Customer.findByEmail","email",email);
+		if(!result.isEmpty()) {
+			return result.get(0);
+		}
+		return null;
+
+		
 	}
 
 }

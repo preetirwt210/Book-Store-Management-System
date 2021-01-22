@@ -1,4 +1,4 @@
-package com.bookstore.controller.frontend;
+package com.bookstore.controller.frontend.books;
 
 import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.BookServices;
