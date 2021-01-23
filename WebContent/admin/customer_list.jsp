@@ -48,25 +48,22 @@
               </td>
        </tr>
        
-     
      </c:forEach>
-         
          
          </table>
     </div>
    
-   
     <jsp:directive.include file="footer.jsp"/>
+    </body>
     <script >
     
     
     function confirmDelete(customerId){
     	if(confirm('Are you sure you want to delete the user with Id: ' + customerId + '?')){
-    		
     		window.location='delete_customer?id=' + customerId;
     	}
     }
     
     </script>
-</body>
+
 </html>

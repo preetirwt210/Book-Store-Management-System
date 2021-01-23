@@ -50,9 +50,17 @@ public class CustomerServices extends BaseServlet {
 		String email=request.getParameter("email");
 		Customer existCustomer=customerDao.findByEmail(email);
 		if(existCustomer!=null) {
-			String message="Cannot register customer because the email: " + email + "Already exists";
+			String message="Cannot create customer because the email: " + email + "Already exists";
 			listCustomers(message);
 		}
+		Customer newCustomer=new Customer();
+		updateCustomerFieldsFromForm(newCustomer);
+		customerDao.create(newCustomer);
+		listCustomers("New Customer created successfully");
+		
+	}
+	private void updateCustomerFieldsFromForm(Customer customer) {
+		String email=request.getParameter("email");
 		String fullname=request.getParameter("fullname");
 		String password=request.getParameter("password");
 		String 	phone=request.getParameter("phone");
@@ -62,21 +70,39 @@ public class CustomerServices extends BaseServlet {
 		String country=request.getParameter("country");
 		
 		
-		Customer newCustomer=new Customer();
-		newCustomer.setEmail(email);
-		newCustomer.setFullname(fullname);
-		newCustomer.setPassword(password);
-		newCustomer.setPhone(phone);
-		newCustomer.setAddress(address);
-		newCustomer.setCity(city);
-		newCustomer.setZipcode(zip);
-		newCustomer.setCountry(country);
 		
+		customer.setEmail(email);
+		customer.setFullname(fullname);
+		customer.setPassword(password);
+		customer.setPhone(phone);
+		customer.setAddress(address);
+		customer.setCity(city);
+		customer.setZipcode(zip);
+		customer.setCountry(country);
+	}
+	
+	public void registerCustomer() throws ServletException, IOException {
+		String email=request.getParameter("email");
+		Customer existCustomer=customerDao.findByEmail(email);
+		String message="";
+		if(existCustomer!=null) {
+			 message="Cannot register customer because the email: " + email + " is already registered ";
+		}else {
+		
+			Customer newCustomer=new Customer();
+			updateCustomerFieldsFromForm(newCustomer);
 		customerDao.create(newCustomer);
-		listCustomers("New Customer created successfully");
+		
+		message="You have registered successfully!!Thankyou.<br/>"
+				+ "<a href='login'>Click here </a> to login.";
+	}
+		String messagePage="frontend/message.jsp";
+		RequestDispatcher dispatcher=request.getRequestDispatcher(messagePage);
+		request.setAttribute("message", message);
+		dispatcher.forward(request, response);
+		
 		
 	}
-
 	public void editCutomers() throws ServletException, IOException {
 		int customerId=Integer.parseInt(request.getParameter("id"));
 		Customer customer=customerDao.get(customerId);
@@ -95,32 +121,17 @@ public class CustomerServices extends BaseServlet {
 		Customer customerByEmail=customerDao.findByEmail(email);
 		String message=null;
 		if(customerByEmail !=null && customerByEmail.getCustomerId() != customerId) {
-			message="Could not update the Csutomer Id" + customerId +
+			message="Could not update the Customer Id" + customerId +
 					"because ther's an existing customer having the same email.";
 		}else {
-			String fullname=request.getParameter("fullname");
-			String password=request.getParameter("password");
-			String 	phone=request.getParameter("phone");
-			String address=request.getParameter("address");
-			String city=request.getParameter("city");
-			String zip=request.getParameter("zip");
-			String country=request.getParameter("country");
 			
 			Customer customerById=customerDao.get(customerId);
-			customerById.setEmail(email);
-			customerById.setFullname(fullname);
-			customerById.setPassword(password);
-			customerById.setPhone(phone);
-			customerById.setAddress(address);
-			customerById.setCity(city);
-			customerById.setCity(city);
-			customerById.setZipcode(zip);
-			customerById.setCountry(country);
+			updateCustomerFieldsFromForm(customerById);
 			
 			customerDao.update(customerById);
-			
+			message="Customer has been successfully updated";
 		}
-		listCustomers("Customer has been successfully updated");
+		listCustomers(message);
 	}
 
 	public void deleteCustomer() throws ServletException, IOException {
@@ -128,6 +139,33 @@ public class CustomerServices extends BaseServlet {
 		customerDao.delete(customerId);
 		listCustomers("Customer has been deleted successfully!");
 	}
+
+	public void showLogin() throws ServletException, IOException {
+		String loginPage="frontend/login.jsp";
+		RequestDispatcher dispatcher=request.getRequestDispatcher(loginPage);
+		dispatcher.forward(request, response);
+	}
+
+	public void doLogin() throws ServletException, IOException {
+		String email=request.getParameter("email");
+		String password=request.getParameter("password");
+		
+		Customer customer=customerDao.checkLogin(email, password);
+		if(customer==null) {
+			String message="Login failed.Please check your email and password.";
+			request.setAttribute("message", message);
+			showLogin();
+		}
+		else {
+			request.getSession().setAttribute("loggedCustomer", customer);
+			String profilePage="frontend/customer_profile.jsp";
+			RequestDispatcher dispatcher=request.getRequestDispatcher(profilePage);
+			dispatcher.forward(request, response);
+		}
+		
+	}
+
+	
 	
 	
 }

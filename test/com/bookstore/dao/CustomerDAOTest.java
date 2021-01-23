@@ -90,5 +90,12 @@ public class CustomerDAOTest extends BaseDAOTest{
 		Customer customer=customerDao.findByEmail(email);
 		assertNotNull(customer);
 	}
+	@Test
+	public void testCheckLoginSuccess() {
+		String email="preetirawat711@gmail.com";
+		String password="rwtpreeti210";
+		Customer customer=customerDao.checkLogin(email, password);
+		assertNotNull(customer);
+	}
 
 }

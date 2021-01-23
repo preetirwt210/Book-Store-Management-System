@@ -42,7 +42,6 @@
          </c:if>
          <table>
          
-         
          <tr>
               <td align="right">Name: </td>
                <td align="left"><input type="text" name="name" id= "name" placeholder="Category" size="20" value="${category.name }"/></td>         
@@ -71,10 +70,8 @@ $(document).ready(function(){
 		messages:{
 				name:"Please enter category name"
 			}
-		
 	});
 });
-  
      
 </script>
 </html>

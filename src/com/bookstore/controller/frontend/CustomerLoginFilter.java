@@ -1,7 +1,6 @@
-package com.bookstore.controller.admin;
+package com.bookstore.controller.frontend;
 
 import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,23 +13,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-@WebFilter("/admin/*")
-public class AdminLoginFilter implements Filter {
+@WebFilter("/*")
+public class CustomerLoginFilter implements Filter {
 
-   
-    public AdminLoginFilter() {
+    public CustomerLoginFilter() {
+        // TODO Auto-generated constructor stub
     }
-	public void destroy() {
-	}
+
 	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
-			throws IOException, ServletException {
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
 
 		// pass the request along the filter chain
-		
-		
 		HttpServletRequest httpRequest=(HttpServletRequest) request;
 		HttpSession session=httpRequest.getSession(false);
 		
