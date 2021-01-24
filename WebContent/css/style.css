@@ -51,6 +51,11 @@ table.form {
 	margin:0 auto;
 
 }
+table.normal {
+	border:0;
+	
+
+}
 
 .save {
 	padding:6px;

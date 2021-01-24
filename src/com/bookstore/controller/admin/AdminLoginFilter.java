@@ -52,8 +52,7 @@ public class AdminLoginFilter implements Filter {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(httpRequest, response);
 		}
-		System.out.println("AdminLoginFilter is invoked");
-		chain.doFilter(request, response);
+		
 	}
 
 	

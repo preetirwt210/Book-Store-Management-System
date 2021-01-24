@@ -1,6 +1,7 @@
-package com.bookstore.controller.frontend;
+package com.bookstore.controller.frontend.customer;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -15,7 +16,10 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter("/*")
 public class CustomerLoginFilter implements Filter {
-
+private static final String[] loginRequiredURLs = {
+		"/view_profile", "/edit_profile", "/update_profile"
+};
+    
     public CustomerLoginFilter() {
         // TODO Auto-generated constructor stub
     }
@@ -25,6 +29,7 @@ public class CustomerLoginFilter implements Filter {
 		// TODO Auto-generated method stub
 	}
 
+	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
@@ -33,26 +38,33 @@ public class CustomerLoginFilter implements Filter {
 		HttpServletRequest httpRequest=(HttpServletRequest) request;
 		HttpSession session=httpRequest.getSession(false);
 		
-		boolean loggedIn= session !=null && session.getAttribute("useremail") !=null;
-		String loginURI= httpRequest.getContextPath() + "/admin/login";
-		boolean loginRequest = httpRequest.getRequestURI().equals(loginURI);
-		boolean loginPage = httpRequest.getRequestURI().endsWith("login.jsp");
+		String path=httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
+		if(!path.startsWith("/admin/")) {
+			chain.doFilter(request, response);
+			return;
+		}
+		boolean loggedIn =session!=null && session.getAttribute("loggedCustomer") !=null;
 		
-		if(loggedIn && (loginRequest || loginPage)) {
-			RequestDispatcher dispatcher=request.getRequestDispatcher("/admin/");
-			dispatcher.forward(httpRequest, response);
-		}
-		if(loggedIn || loginRequest) {
-			System.out.println("use logged in");
-			chain.doFilter(httpRequest, response);
-		}
-		else {
-			System.out.println("use logged in");
-			RequestDispatcher dispatcher=request.getRequestDispatcher("login.jsp");
-			dispatcher.forward(httpRequest, response);
-		}
-		System.out.println("AdminLoginFilter is invoked");
+		String requestURL =httpRequest.getRequestURL().toString();
+		
+		System.out.println("Path" + path);
+		System.out.println("LoggedIn" + loggedIn);
+		
+		if(!loggedIn  && isLoginRequired(requestURL)) {
+			String profilePage="frontend/login.jsp";
+			RequestDispatcher dispatcher=request.getRequestDispatcher(profilePage);
+			dispatcher.forward(request, response);
+		}else {
 		chain.doFilter(request, response);
+		}
+	}
+	private boolean isLoginRequired(String requestURL) {
+		for(String loginRequiredURL : loginRequiredURLs) {
+			if(requestURL.contains(loginRequiredURL)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	

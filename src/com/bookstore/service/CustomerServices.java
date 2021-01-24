@@ -70,10 +70,13 @@ public class CustomerServices extends BaseServlet {
 		String country=request.getParameter("country");
 		
 		
-		
+		if(email!=null && !email.equals("")) {
 		customer.setEmail(email);
+		}
 		customer.setFullname(fullname);
+		if(password!=null && !password.equals("")){
 		customer.setPassword(password);
+		}
 		customer.setPhone(phone);
 		customer.setAddress(address);
 		customer.setCity(city);
@@ -158,10 +161,30 @@ public class CustomerServices extends BaseServlet {
 		}
 		else {
 			request.getSession().setAttribute("loggedCustomer", customer);
-			String profilePage="frontend/customer_profile.jsp";
-			RequestDispatcher dispatcher=request.getRequestDispatcher(profilePage);
-			dispatcher.forward(request, response);
+			showCustomerProfile();
 		}
+		
+	}
+	public void showCustomerProfile() throws ServletException, IOException {
+		String profilePage="frontend/customer_profile.jsp";
+		RequestDispatcher dispatcher=request.getRequestDispatcher(profilePage);
+		dispatcher.forward(request, response);
+	}
+
+	public void showCustomerProfileEditForm() throws ServletException, IOException {
+		String profilePage="frontend/edit_profile.jsp";
+		RequestDispatcher dispatcher=request.getRequestDispatcher(profilePage);
+		dispatcher.forward(request, response);
+		
+		
+	}
+
+	public void updateCustomerProfile() throws ServletException, IOException {
+		Customer customer=(Customer) request.getSession().getAttribute("loggedCustomer");
+		updateCustomerFieldsFromForm(customer);
+		customerDao.update(customer);
+		
+		showCustomerProfile();
 		
 	}
 
