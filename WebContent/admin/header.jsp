@@ -26,7 +26,7 @@
 		      <img src="../images/customer.png" width="100" height="50"/><br/>Customers</a> 
 		     </div>
 		     <div class="menu_item">
-		      <a href="reviews" >
+		      <a href="list_review" >
 		      <img src="../images/review.png" width="100" height="50"/><br/>Reviews</a> 
 		      </div>
 		      <div class="menu_item">
