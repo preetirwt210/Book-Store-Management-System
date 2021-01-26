@@ -39,7 +39,7 @@ private static final String[] loginRequiredURLs = {
 		HttpSession session=httpRequest.getSession(false);
 		
 		String path=httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
-		if(!path.startsWith("/admin/")) {
+		if(path.startsWith("/admin/")) {
 			chain.doFilter(request, response);
 			return;
 		}
