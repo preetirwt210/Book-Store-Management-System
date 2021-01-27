@@ -32,17 +32,17 @@ public class ReviewDAOTest extends BaseDAOTest{
 	public void testCreateReview() {
 		Review review=new Review();
 		Book book=new Book();
-		book.setBookId(7);
+		book.setBookId(4);
 		
 		Customer customer=new Customer();
-		customer.setCustomerId(5);
+		customer.setCustomerId(1);
 		
 		review.setBook(book);
 		review.setCustomer(customer);
 		
-		review.setHeadline("Book is nice");
+		review.setHeadline("Excellent Book");
 		review.setRating(5);
-		review.setComment("I've read this book.It is very good.");
+		review.setComment("Very useful content! Just loved it.Must try..");
 	Review savedReview=reviewDao.create(review);
 	assertTrue(savedReview.getReviewId()>0);
 		
@@ -50,11 +50,11 @@ public class ReviewDAOTest extends BaseDAOTest{
 
 	@Test
 	public void testUpdateReview() {
-		Review review=reviewDao.get(3);
-		review.setHeadline("Book is excellent!");
+		Review review=reviewDao.get(6);
+		review.setRating(4);
 		
 		Review updatedReview=reviewDao.update(review);
-		assertEquals(review.getHeadline(),updatedReview.getHeadline());
+		assertEquals(review.getRating(),updatedReview.getRating());
 		
 	}
 

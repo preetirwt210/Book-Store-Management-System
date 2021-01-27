@@ -22,7 +22,18 @@
        <img class="book-small" 
        src="data:imagejpg;base64,${book.base64Image }"/></a></div><br/>
       <div><b> <a href="view_book?id=${book.bookId}">${book.title }</a></b></div>
-       <div>rating *****</div>
+      
+       <div><c:forTokens items="${book.ratingStars}" delims="," var="star">
+            <c:if test="${star eq 'on' }">
+            <img src="images/rating_on.png" />
+            </c:if>
+            <c:if test="${star eq 'off' }">
+            <img src="images/rating_off.png" />
+            </c:if>
+            <c:if test="${star eq 'half' }">
+            <img src="images/rating_half.png" />
+            </c:if>
+       </c:forTokens></div>
         <div><i>by ${book.author}</i></div>
          <div><b>$ ${book.price }</b></div>	
          </div>

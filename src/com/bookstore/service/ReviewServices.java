@@ -32,15 +32,55 @@ public class ReviewServices {
 		reviewDao= new ReviewDAO(entityManager);
 		categoryDAO= new CategoryDAO(entityManager);
 	}
+    public void listAllReviews() throws ServletException, IOException {
+    	listAllReviews(null);
+    }
 
-	public void listAllReviews() throws ServletException, IOException {
+	public void listAllReviews(String message) throws ServletException, IOException {
 		List<Review> listReviews=reviewDao.listAll();
 		
 		request.setAttribute("listReviews", listReviews);
-		
+		if(message!=null) {
+			request.setAttribute("message", message);
+		}
 		String listPage="review_list.jsp";
 		RequestDispatcher dispatcher=request.getRequestDispatcher(listPage);
 		dispatcher.forward(request, response);
+		
+	}
+
+	public void editReview() throws ServletException, IOException {
+              Integer reviewId=Integer.parseInt(request.getParameter("id"));
+              Review review=reviewDao.get(reviewId);
+              
+              request.setAttribute("review", review);
+              
+              String editPage="review_form.jsp";
+              RequestDispatcher dispatcher=request.getRequestDispatcher(editPage);
+              dispatcher.forward(request, response);
+	}
+
+	public void updateReview() throws ServletException, IOException {
+		Integer reviewId=Integer.parseInt(request.getParameter("reviewId"));
+		String headline=request.getParameter("headline");
+		String comment=request.getParameter("comment");
+		
+		Review review=reviewDao.get(reviewId);
+		review.setHeadline(headline);
+		review.setComment(comment);
+		
+		reviewDao.update(review);
+		
+		String message="Review has been successfully update!";
+		
+		listAllReviews(message);
+	}
+	public void deleteReview() throws ServletException, IOException {
+		Integer reviewId=Integer.parseInt(request.getParameter("id"));
+		
+		reviewDao.delete(reviewId);
+		String message="Review has been successfully deleted";
+		listAllReviews(message);
 		
 	}
     

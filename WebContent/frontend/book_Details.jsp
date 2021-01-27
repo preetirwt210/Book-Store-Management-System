@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,7 +19,18 @@
            
            <tr>
            <td rowspan="2"><img class="book-large" src="data:imagejpg;base64,${book.base64Image }" /></td>
-           <td valign="top" align="left">Rating *****</td>
+           <td valign="top" align="left"><c:forTokens items="${book.ratingStars}" delims="," var="star">
+            <c:if test="${star eq 'on' }">
+            <img src="images/rating_on.png" />
+            </c:if>
+            <c:if test="${star eq 'off' }">
+            <img src="images/rating_off.png" />
+            </c:if>
+            <c:if test="${star eq 'half' }">
+            <img src="images/rating_half.png" />
+            </c:if>
+       </c:forTokens>
+       <a href="#reviews">&nbsp;&nbsp;${fn:length(book.reviews)} Reviews</a></td>
            <td valign="top" rowspan="2" width="10%"><h2>$${book.price}</h2> <br/><br/><button type="submit">Add to Cart</button> </td>
            </tr>
            
@@ -27,9 +39,38 @@
            </tr>
            <tr><td>&nbsp; &nbsp;</td></tr>
            <tr>
-           <td><h2>Customer Reviews</h2></td>
+           <td><h2><a id="reviews" >Customer Reviews</a></h2></td>
            <td colspan="2"><button>Write customer reviews</button></td>
            </tr>
+		           <tr>
+		           <td colspan="3" align="left">
+		              <table class="normal">
+		              <c:forEach items="${book.reviews }" var="review">
+		              <tr>
+		              <td><c:forTokens items="${book.ratingStars}" delims="," var="star">
+					            <c:if test="${star eq 'on' }">
+					            <img src="images/rating_on.png" />
+					            </c:if>
+					            <c:if test="${star eq 'off' }">
+					            <img src="images/rating_off.png" />
+					            </c:if>
+					            
+					       </c:forTokens>
+					       - <b>${review.headline}</b>
+		                </td>
+		                </tr>
+		                <tr>
+		                   <td>
+		                     by ${review.customer.fullname} on ${review.reviewTime}
+		                     </td>
+		                 </tr>  
+		                 <tr>
+		                 <td> <i>${review.comment }</i></td></tr>
+		                 <tr><td>&nbsp;</td></tr>  
+		                 </c:forEach>
+		              </table>
+		           </td>
+		           </tr>
        
        
        </table>
