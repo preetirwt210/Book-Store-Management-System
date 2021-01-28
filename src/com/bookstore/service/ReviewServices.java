@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.dao.ReviewDAO;
+import com.bookstore.entity.Book;
 import com.bookstore.entity.Review;
 
 public class ReviewServices {
 	private EntityManager entityManager;
 	private ReviewDAO reviewDao;
-	private BookDAO bookDAO;
 	private CategoryDAO categoryDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
@@ -81,6 +81,18 @@ public class ReviewServices {
 		reviewDao.delete(reviewId);
 		String message="Review has been successfully deleted";
 		listAllReviews(message);
+		
+	}
+	
+	public void showReviewForm() throws ServletException, IOException {
+		
+		Integer bookId=Integer.parseInt(request.getParameter("book_id"));
+		BookDAO bookDao=new BookDAO(entityManager);
+		Book book=bookDao.get(bookId);
+		request.setAttribute("book", book);
+		String targetPage="frontend/review_form.jsp";
+		RequestDispatcher dispatcher=request.getRequestDispatcher(targetPage);
+		dispatcher.forward(request, response);
 		
 	}
     

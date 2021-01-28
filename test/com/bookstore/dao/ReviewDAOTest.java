@@ -2,6 +2,7 @@ package com.bookstore.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -91,6 +92,23 @@ public class ReviewDAOTest extends BaseDAOTest{
 		long totalReviews=reviewDao.count();
 		System.out.println("Total reviews are: " + totalReviews);
 		assertTrue(totalReviews >0);
+	}
+	@Test
+	public void findByCustomerAndBookNotFound() {
+		Integer customerId=99;
+		Integer bookId=99;
+		Review review=reviewDao.findByCustomerAndBook(customerId, bookId);
+		
+		assertNull(review);
+	}
+	
+	@Test
+	public void findByCustomerAndBookFound() {
+		Integer customerId=1;
+		Integer bookId=4;
+		Review review=reviewDao.findByCustomerAndBook(customerId, bookId);
+		
+		assertNotNull(review);
 	}
 
 }

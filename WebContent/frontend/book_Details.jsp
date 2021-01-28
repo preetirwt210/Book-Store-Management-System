@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>${book.title} - Online Books Store</title>
 <link type="text/css" rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+
 </head>
 <body>
       
@@ -40,7 +43,7 @@
            <tr><td>&nbsp; &nbsp;</td></tr>
            <tr>
            <td><h2><a id="reviews" >Customer Reviews</a></h2></td>
-           <td colspan="2"><button>Write customer reviews</button></td>
+           <td colspan="2"><button id="buttonWriteReview">Write customer reviews</button></td>
            </tr>
 		           <tr>
 		           <td colspan="3" align="left">
@@ -78,4 +81,11 @@
       <br/><br/> 
       <jsp:directive.include file="footer.jsp"/>
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#buttonWriteReview").click(function(){
+		window.location='write_review?book_id=' + ${book.bookId};
+	});
+});
+</script>
 </html>
