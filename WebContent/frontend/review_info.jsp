@@ -17,10 +17,10 @@
       <jsp:directive.include file="header.jsp"/>
 	<div align="center">
 		
-		<form id="reviewForm" action="submit_review" method="post">
+		<form id="reviewForm" >
 		     <table class="normal" width="60%">
 		        <tr>
-		        <td><h2>Your Reviews</h2></td>
+		        <td><h2>You already wrote the review.</h2></td>
 		        <td><h3>${loggedCustomer.fullname }</h3></td>
 		        </tr>
 		        <tr><td colspan="3"><hr/></td></tr>
@@ -30,19 +30,12 @@
 		        </td>
 		        <td>
 		        <div id="rateYo"></div>
-		        <input type="hidden" id="rating" name="rating"/>
-		        <input type="hidden" name="bookId" value="${book.bookId }"/>
 		        <br/>
-		        <input type="text" name="headline" size="60" placeholder="Headline or summary for your review (required)"/>
+		        <input type="text" name="headline" size="60" readonly="readonly" value="${review.headline }"/>
 		       <br/><br/>
-		       <textarea name="comment" cols="70" rows="10" placeholder="Write your review details.."></textarea>
+		       <textarea name="comment" cols="70" rows="10" readonly="readonly" >${review.comment }</textarea>
 		       </td> </tr>
-		       <tr>
-          <td colspan="2" align="center">
-              <input type="submit" value="Save" class="save"/> &nbsp;&nbsp;
-              <input type="button" value="Cancel" onclick="javascript:history.go(-1);" class="cancel"/>
-              </td>    
-         </tr>
+		       
 		     </table>
 		
 		</form>
@@ -53,22 +46,13 @@
 	<script type="text/javascript">
 	
 	$(document).ready(function(){
-		$("#reviewForm").validate({
-			rules:{
-				comment: "required",
-				headline: "required",
-			},
-			messages:{
-				comment:"Please enter comment",
-				headline:"Please enter headline"
-			}
-		});
+		
 		$("#rateYo").rateYo({
 		    starWidth: "40px",
+		    rating:${review.rating},
 		    fullStar: true,
-		    onSet: function(rating,rateYoInstance){
-		    	$("#rating").val(rating);
-		    }
+		    readOnly:true
+		    
 		  });
 	});
 	  
