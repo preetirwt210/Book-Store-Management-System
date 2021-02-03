@@ -12,7 +12,6 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 
 	public BookDAO(EntityManager entityManager) {
 		super(entityManager);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
