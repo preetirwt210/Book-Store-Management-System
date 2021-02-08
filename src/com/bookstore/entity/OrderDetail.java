@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -42,9 +43,9 @@ public class OrderDetail implements java.io.Serializable {
 	}
 
 	@EmbeddedId
-    
-	 @Column(name = "order_id", nullable = false)
-			
+
+	@AttributeOverrides({ @AttributeOverride(name = "orderId", column = @Column(name = "order_id", nullable = false)),
+			@AttributeOverride(name = "bookId", column = @Column(name = "book_id", nullable = false))})
 	public OrderDetailId getId() {
 		return this.id;
 	}

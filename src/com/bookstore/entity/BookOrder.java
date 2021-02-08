@@ -1,5 +1,6 @@
 package com.bookstore.entity;
-// Generated May 22, 2018 5:46:15 AM by Hibernate Tools 5.2.10.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -10,12 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,6 +28,7 @@ import javax.persistence.Transient;
 
 public class BookOrder implements java.io.Serializable {
 
+	
 	private Integer orderId;
 	private Customer customer;
 	private Date orderDate;
@@ -137,7 +136,7 @@ public class BookOrder implements java.io.Serializable {
 		this.paymentMethod = paymentMethod;
 	}
 
-	@Column(name = "total", nullable = false, precision = 12, scale = 0)
+	@Column(name = "order_total", nullable = false, precision = 12, scale = 0)
 	public float getTotal() {
 		return this.total;
 	}
@@ -146,7 +145,7 @@ public class BookOrder implements java.io.Serializable {
 		this.total = total;
 	}
 
-	@Column(name = "status", nullable = false, length = 20)
+	@Column(name = "order_status", nullable = false, length = 20)
 	public String getStatus() {
 		return this.status;
 	}
