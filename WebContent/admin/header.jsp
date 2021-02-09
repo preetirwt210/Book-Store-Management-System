@@ -30,7 +30,7 @@
 		      <img src="../images/review.png" width="100" height="50"/><br/>Reviews</a> 
 		      </div>
 		      <div class="menu_item">
-		      <a href="orders" >
+		      <a href="list_order" >
 		      <img src="../images/order.png" width="100" height="50"/><br/>Orders</a>
                </div>
       </div>
