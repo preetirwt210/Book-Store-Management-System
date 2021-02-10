@@ -5,7 +5,7 @@
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Your Shopping cart</title>
+	<title>Checkout- Online Book Order</title>
 	
 	<link rel="stylesheet" href="css/style.css">
 	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
@@ -16,7 +16,6 @@
       <jsp:directive.include file="header.jsp"/>
 	<div align="center">
 		
-		<h2>Your Shopping cart Details</h2>
 		<c:if test="${message!=null }">
 			   <div align="center">
 			      <h4 class="message">${message }</h4>
@@ -31,15 +30,17 @@
 	<c:if test="${cart.totalItems >0}">
 	
 	    
-	       <form action="update_cart" method="post" id="cartForm">
+	      
 	       <div>
+	       <h2>Review Your Order Details <a href="view_cart">Edit</a></h2>
 	           <table border="1">
 	           
 	               <tr>
 	                 <th>No</th>
 	                 <th colspan="2">Book</th>
+	                 <th>Author</th>
+	                  <th>Price</th>
 	                 <th>Quantity</th>
-	                 <th>Price</th>
 	                 <th>Subtotal</th>
 	                 <th>
 	             
@@ -50,17 +51,17 @@
 	                  <td>${status.index + 1}</td>
 	                  <td><img class="book-small" 
        src="data:imagejpg;base64,${item.key.base64Image }"/><br/></td>
-       
        <td>
        <span id="book-title">${item.key.title}</span>
        </td>
+     <td><b>${item.key.author}</b></td>
+       
+      <td><fmt:formatNumber value="${item.key.price}" type="currency"/></td>
 	                  <td>
-	                  <input type="hidden" name="bookId" value="${item.key.bookId}"/>
 	                 <input type="text" name="quantity${status.index + 1}" value="${item.value}" size="5"/>
 	                  </td>
-	                   <td><fmt:formatNumber value="${item.key.price}" type="currency"/></td>
+	                  
 	                    <td><fmt:formatNumber value="${item.value*item.key.price}" type="currency"/></td>
-	                     <td><a href="remove_from_cart?book_id=${item.key.bookId}">Remove</a></td>
 	              </tr>
 	              </c:forEach>
 	                 <tr>
@@ -72,22 +73,61 @@
 	                   <td colspan="2" ><b><fmt:formatNumber value="${cart.totalAmount }" type="currency"/></b></td>
 	                 </tr>
 	           </table>
-	            </div>
-	             <div>
+	           <h2>Your Shipping Information</h2>
+	           <form id="orderForm" action="place_order" method="post">
+	             <table border="1">
+	                <tr>
+	                  <td>Recipient Name:</td>
+	                  <td><input type="text" name="recipientName" value="${loggedCustomer.fullname}"/></td>
+	                </tr>
+	                
+	                <tr>
+	                  <td>Recipient Phone:</td>
+	                  <td><input type="text" name="phone" value="${loggedCustomer.phone}"/></td>
+	                </tr>
+	                
+	                <tr>
+	                  <td>Street Address:</td>
+	                  <td><input type="text" name="address" value="${loggedCustomer.address}"/></td>
+	                </tr>
+	                
+	                <tr>
+	                  <td>City:</td>
+	                  <td><input type="text" name="city" value="${loggedCustomer.city}"/></td>
+	                </tr>
+	                
+	                <tr>
+	                  <td>ZipCode:</td>
+	                  <td><input type="text" name="zipcode" value="${loggedCustomer.zipcode}"/></td>
+	                </tr>
+	                
+	                <tr>
+	                  <td>Country:</td>
+	                  <td><input type="text" name="country" value="${loggedCustomer.country}"/></td>
+	                </tr>
+	             </table>
+	                <div>
+	                   <h2>Payment</h2>
+	                   Choose your payment method:
+	                   &nbsp; &nbsp; &nbsp;
+	                   <select name="paymentMethod">
+	                   <option value="Cash On Delivery">Cash On Delivery</option></select>
+	                </div>
+	                <div>
 	                  <table class="normal">
 	                  <tr>
-	                      <td></td>
-	                      <td><button type="submit">Update</button></td>
-	                      <td><input type="button" id="clearCart" value="Clear Cart"/></td>
+	                      <td> &nbsp;</td>
+	                      </tr>
+	                      <tr>
+	                      <td><button type="submit">Place Order</button></td>
 	                      <td><a href="${pageContext.request.contextPath}/">Continue Shopping</a></td>
-	                      <td><a href="checkout">CheckOut</a>
+	                   
 	                  </tr>
 	                  
 	                  </table>
 	              </div>
-	       </form>
-	    
-	   
+	           </form>
+	            </div>
 	</c:if>
 	
 	</div>
@@ -95,27 +135,25 @@
 	</body>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$("#clearCart").click(function(){
-			window.location='clear_cart';
-		});
 			
-		$("#cartForm").validate({
+		$("#orderForm").validate({
 			rules:{
-				 <c:forEach items="${cart.items}" var="item" varStatus="status">
-				    quantity${status.index +1}: {
-				    	required:true, number: true, min:1 },
-				 </c:forEach>
+				recipientName: "required",
+				phone: "required",
+				address: "required",
+				city: "required",
+				zipcode: "required",
+				country: "required",
 				
 			},
 			messages:{
-				 <c:forEach items="${cart.items}" var="item" varStatus="status">
-				    quantity${status.index +1}: {required:"Please enter quantity",
-				    	required: "Please enter quantity",
-				    	number:"Quantity must be a number",
-				    	min:"Quantity must be greater than 0"
-				    	
-				    },
-				 </c:forEach>
+				recipientName: "Please Enter Name ",
+				phone: "Please Enter Phone",
+				address: "Please Enter Address",
+				city: "Please Enter City",
+				zipcode: "Please Enter ZipCode",
+				country: "Please Enter Country",
+				   
 			}
 		});
 	});

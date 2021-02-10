@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/*")
 public class CustomerLoginFilter implements Filter {
 private static final String[] loginRequiredURLs = {
-		"/view_profile", "/edit_profile", "/update_profile", "/write_review"
+		"/view_profile", "/edit_profile", "/update_profile", "/write_review","/checkout","/place_order","/view_orders", "/show_order_detail"
 };
     
     public CustomerLoginFilter() {
@@ -31,10 +31,7 @@ private static final String[] loginRequiredURLs = {
 
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-
-		// pass the request along the filter chain
+		
 		HttpServletRequest httpRequest=(HttpServletRequest) request;
 		HttpSession session=httpRequest.getSession(false);
 		
