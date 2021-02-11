@@ -153,4 +153,27 @@ public class OrderServices {
 		
 	}
 
+	public void showEditOrderForm() throws ServletException, IOException {
+		
+		Integer orderId=Integer.parseInt(request.getParameter("id"));
+		
+		HttpSession session=request.getSession();
+		
+		Object isPendingBook=session.getAttribute("NewBookPendingToAddToOrder");
+		
+		if(isPendingBook == null) {
+			
+		BookOrder order=orderDao.get(orderId);
+		session.setAttribute("order", order);
+		}
+		
+		else {
+			session.removeAttribute("NewBookPendingToAddToOrder");
+		}
+		String editPage="order_form.jsp";
+		RequestDispatcher dispatcher=request.getRequestDispatcher(editPage);
+		dispatcher.forward(request, response);
+		
+	}
+
 }
