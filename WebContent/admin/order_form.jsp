@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit  Order -Evergreen Bookstore Administration</title>
 <link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+   <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 <jsp:directive.include file="header.jsp"/> 
@@ -86,7 +88,7 @@
                  <td><fmt:formatNumber value="${orderDetail.book.price}" type="currency"/></td>
                   <td><input type="text" name="quantity" value="${orderDetail.quantity}" size="5"/></td>
                   <td><fmt:formatNumber value="${orderDetail.subtotal}" type="currency"/></td>
-                  <td><a href="">Remove</a></td>
+                  <td><a href="remove_book_from_order?id=${orderDetail.book.bookId }">Remove</a></td>
                   
                  </tr>
               </c:forEach>
@@ -110,7 +112,7 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <input type="submit" value="Save" class="save"/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="button" value="Cancel" onclick="javascript:history.go(-1);" class="cancel"/>
+          <input type="button" value="Cancel" onclick="javascript:window.location.href='list_order';" class="cancel"/>
            
           </div>
      </form>
@@ -125,6 +127,21 @@
     	   window.open('add_book_form', '_blank', 'width='
     			   + width + ', height=' + height + ', top=' + top + ', left=' + left);
        }
+       
+       $(document).ready(function(){
+    		$("#orderForm").validate({
+    			rules:{
+    					name:"required",
+    					phone:"required",
+    					address:"required"
+    			},
+    			messages:{
+    					name:"Please enter recipient name",
+    					phone:"Please enter recipient phone number",
+    					address:"Please enter shipping address"
+    				}
+    		});
+    	});
     
     </script>
 </body>
