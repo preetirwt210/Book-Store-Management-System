@@ -21,6 +21,7 @@ import org.junit.Test;
 
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
+import com.mchange.v2.sql.filter.SynchronizedFilterDataSource;
 
 public class BookDAOTest extends BaseDAOTest {
 	private static BookDAO bookDao;
@@ -205,6 +206,29 @@ public void testCreate2ndBook() throws ParseException, IOException {
 		
 		long totalBooks=bookDao.count();
 		assertEquals(2,totalBooks);
+		
+		
+	}
+	
+	@Test
+	public void testListBestSellingBooks() {
+		List<Book> topBestSellingBooks=bookDao.listBestSellingBooks();
+		
+		for(Book book: topBestSellingBooks) {
+			System.out.println(book.getTitle());
+		}
+		assertEquals(3, topBestSellingBooks.size());
+		
+		
+	}
+	@Test
+	public void testListMostFavouredBooks() {
+		List<Book> listMostFavoredBooks=bookDao.listMostFavoredBooks();
+		for(Book book: listMostFavoredBooks) {
+			System.out.println(book.getTitle());
+		}
+		
+		assertEquals(2, listMostFavoredBooks.size());
 		
 		
 	}

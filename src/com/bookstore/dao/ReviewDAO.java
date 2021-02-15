@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
+import com.bookstore.entity.BookOrder;
 import com.bookstore.entity.Review;
 
 public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
@@ -60,6 +61,10 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
 			return result.get(0);
 		}
 		return null;
+	}
+	public List<Review> listMostRecent(){
+		return super.findWithNamedQuery("Review.listAll()", 0, 3);
+		
 	}
 
 }

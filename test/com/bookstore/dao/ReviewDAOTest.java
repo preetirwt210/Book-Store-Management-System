@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bookstore.entity.Book;
+import com.bookstore.entity.BookOrder;
 import com.bookstore.entity.Customer;
 import com.bookstore.entity.Review;
 
@@ -109,6 +110,13 @@ public class ReviewDAOTest extends BaseDAOTest{
 		Review review=reviewDao.findByCustomerAndBook(customerId, bookId);
 		
 		assertNotNull(review);
+	}
+	@Test
+	public void testListMostRecent() {
+		
+		List<Review> recentreview=reviewDao.listMostRecent();
+		assertEquals(3,recentreview.size());
+		
 	}
 
 }

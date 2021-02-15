@@ -173,6 +173,14 @@ public class OrderDAOTest extends BaseDAOTest {
 		
 	}
 	
+	@Test
+	public void testListMostRecentSales() {
+		
+		List<BookOrder> recentOrders=orderDao.listMostRecentSales();
+		assertEquals(3,recentOrders.size());
+		
+	}
+	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		BaseDAOTest.tearDownAfterClass();
